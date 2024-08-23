@@ -1,6 +1,5 @@
 import Nav from './nav and fot/navbar';
-import Login from './admin/login';
-import Signup from './admin/signup';
+import LogSignin from './admin/login';
 import Folder from './folder/folder';
 import Fdetails from './folder/folderdetails';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -13,9 +12,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/s' element={<Signup />} />
           <Route path='/n' element={<Nav />} />
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<LogSignin />} />
           <Route path='/home' element={<HomePage1 />} />
           <Route path='/folder' element={<Folder />} />
           <Route path='/fd/:userId' element={<Fdetails />} />
