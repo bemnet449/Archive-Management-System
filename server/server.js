@@ -4,6 +4,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const folderRoutes = require('./routes/folderRoutes');
+const FileMovement= require('./models/filetrack')
 
 const app = express();
 const dburi = 'mongodb://localhost:27017/Archive';
@@ -26,3 +27,54 @@ mongoose.connect(dburi)
 app.use(authRoutes);
 app.use(usersRoutes);
 app.use(folderRoutes);
+
+app.post('/Arv', async (req, res) => {
+    try {
+        const {
+            fileNumber,
+            folderId,
+            organizationName,
+            volumeNumber,
+            requestorName,
+            requestorFatherName,
+            requestorGrandfatherName,
+            receiverName,
+            receiverFatherName,
+            receiverGrandfatherName,
+            borrowingDate,
+            returnDate,
+            pagesWhenBorrowed,
+            pagesWhenReturned,
+            remarks
+        } = req.body;
+
+        const newFileMovement = new FileMovement({
+            fileNumber,
+            folderId,
+            organizationName,
+            volumeNumber,
+            requester: {
+                name: requestorName,
+                fatherName: requestorFatherName,
+                grandfatherName: requestorGrandfatherName,
+            },
+            receiver: {
+                name: receiverName,
+                fatherName: receiverFatherName,
+                grandfatherName: receiverGrandfatherName,
+            },
+            borrowingDate,
+            returnDate,
+            pagesWhenBorrowed,
+            pagesWhenReturned,
+            remarks
+        });
+
+        await newFileMovement.save();
+
+        res.status(201).json({ message: 'success' });
+    } catch (error) {
+        console.error('Error saving file details:', error);
+        res.status(500).json({ message: 'Error saving file details', error });
+    }
+});
