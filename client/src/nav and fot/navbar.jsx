@@ -13,7 +13,7 @@ const Nav = () => {
                 <h2>Archive system</h2>
             </div>
             <div className="nav-links">
-                <Link to="/s" className="sign-up">Sign Up</Link>
+                <Link to="/l" className="sign-up">login</Link>
                 <Link to="/folder" className="folder-link">Folder</Link> {/* Added Link */}
             </div>
         </div>

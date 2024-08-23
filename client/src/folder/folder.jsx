@@ -38,17 +38,17 @@ const Folder = () => {
     
     const handleSearch2 = async (e) => {
         e.preventDefault();
-        try{
-            const response = await axios.post('http://localhost:3000/search2',{name,fatherName,grandfatherName})
-
+        try {
+            const response = await axios.post('http://localhost:3000/search2', { name, fatherName, grandfatherName });
+    
             if (response.data.status === "success") {
-                navigate('/results', { state: { userId: response.data.id } });
+                const { userId } = response.data;
+                navigate('/home', { state: { userId } });
             } else {
                 console.error("Search failed:", response.data.message);
                 // Handle unsuccessful search
             }
-
-        } catch(error){
+        } catch (error) {
             console.error("An error occurred during the search:", error);
         }
     };

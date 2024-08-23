@@ -11,8 +11,8 @@ body {
 
 /* Navbar styles */
 .nav {
-    height: 80px;
-    background-color: rgb(43, 140, 245);
+    height: 100px;
+    background-color: #1787fe;
     display: flex;
     align-items: center;
     justify-content: space-between;

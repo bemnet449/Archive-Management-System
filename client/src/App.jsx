@@ -1,25 +1,27 @@
 import Nav from './nav and fot/navbar';
-import LogSignin from './admin/login';
+import Login from './admin/login';
 import Folder from './folder/folder';
 import Fdetails from './folder/folderdetails';
+import FDedit from './folder/fdetailsedit';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage1 from './folder/homeout';
-import Homepage from './folder/home';
+import HomePage from './folder/home';
 import ResultsPage from './folder/users';
-import FdEdit from './folder/fdEdit'
+import Fileborrw from './filemovtrack/borrowingfile';
+import Fbn from './filemovtrack/borrowingdetails';
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path='/n' element={<Nav />} />
-          <Route path='/' element={<LogSignin />} />
-          <Route path='/home' element={<HomePage1 />} />
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<HomePage />} />
           <Route path='/folder' element={<Folder />} />
           <Route path='/fd/:userId' element={<Fdetails />} />
           <Route path="/u" element={<ResultsPage/>}/>
-          <Route path='/results' element={<Homepage />}/>
-          <Route path='/fdedit' element={<FdEdit/>} />
+          <Route path="/fdedit" element={<FDedit/>}/>
+          <Route path="/fb" element={<Fileborrw/>}/>
+          <Route path="/fbn" element={<Fbn/>}/>
         </Routes>
       </BrowserRouter>
     </>

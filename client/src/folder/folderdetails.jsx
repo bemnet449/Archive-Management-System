@@ -19,7 +19,7 @@ const Fdetails = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchUserName = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/users/${userId}`);
