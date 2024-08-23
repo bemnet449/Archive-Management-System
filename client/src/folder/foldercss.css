@@ -1,0 +1,153 @@
+/* Set background color for body */
+body {
+  background-color: #f0eae4; /* Eggshell white */
+  margin: 0; /* Remove default margin */
+}
+
+/* Container styles for folder and fdetails */
+.folder-container,
+.fdetails-container {
+  width: 90%; /* Set to 90% of the viewport width */
+  max-width: 1200px; /* Maximum width for large screens */
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  background-color: #ffffff; /* Ensure white background for containers */
+}
+
+/* Folder header styles */
+.folder-header,
+.fdetails-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+
+.folder-header button,
+.fdetails-header button {
+  width: min-content;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.folder-header button:hover,
+.fdetails-header button:hover {
+  background-color: #0056b3;
+}
+
+/* Form styles */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td {
+  padding: 10px;
+}
+
+td .input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row1 input,
+.form-row2 input,
+.form-row3 select,
+.form-row4 select,
+.form-row5 select,
+.name-row input,
+.remarks-row textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.row1 button {
+  width: min-content;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.row1 button:hover {
+  background-color: #0056b3;
+}
+
+.name-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.name-row .input-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.name-row .input-group:last-child {
+  margin-right: 0;
+}
+
+.name-row button {
+  width: min-content;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.name-row button:hover {
+  background-color: #0056b3;
+}
+
+.remarks-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.remarks-row textarea {
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .name-row {
+    flex-direction: column;
+  }
+
+  .name-row .input-group {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .name-row button {
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,58 @@
+/* Reset margins for body and html to ensure nav stays at the top */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjusting the body to add space for the fixed nav */
+body {
+    margin-top: 60px; /* Height of the .nav + some extra space if needed */
+}
+
+/* Navbar styles */
+.nav {
+    height: 80px;
+    background-color: rgb(43, 140, 245);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc; /* Optional: adds a border around the nav */
+    position: fixed; /* Stays fixed at the top of the page */
+    top: 0; /* Aligns the nav at the very top */
+    left: 0; /* Aligns the nav at the very left */
+    right: 0; /* Ensures the nav spans the full width */
+    z-index: 1000; /* Ensures the nav is on top of other content */
+}
+
+/* Ensure the logo scales correctly */
+.logo {
+    height: 80px; /* Adjust as needed */
+    width: 300px;  /* Maintains aspect ratio */
+}
+
+/* Styles for the text next to the logo */
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px; /* Space between image and text */
+}
+
+/* Remove default margins from headings and paragraphs */
+h2 {
+    margin-top: 40px; /* Remove default margins */
+    text-transform: uppercase;
+}
+
+/* Sign-up link styles */
+.sign-up {
+    text-decoration: none;
+    color: #000000; /* Color for the link */
+    font-weight: bold;
+}
+
+/* Sign-up link hover effect */
+.sign-up:hover {
+    text-decoration: underline;
+}
