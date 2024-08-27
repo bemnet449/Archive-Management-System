@@ -84,18 +84,18 @@ app.post('/searchFileMovements', async (req, res) => {
         const { name, fatherName, grandfatherName, isRequestor } = req.body;
 
         let query = {};
-        
+
         if (isRequestor) {
             query = {
                 'requester.name': name,
-                'requester.fatherName': { $exists: true, $eq: fatherName },
-                'requester.grandfatherName': { $exists: true, $eq: grandfatherName }
+                ...(fatherName && { 'requester.fatherName': fatherName }),
+                ...(grandfatherName && { 'requester.grandfatherName': grandfatherName })
             };
         } else {
             query = {
                 'receiver.name': name,
-                'receiver.fatherName': { $exists: true, $eq: fatherName },
-                'receiver.grandfatherName': { $exists: true, $eq: grandfatherName }
+                ...(fatherName && { 'receiver.fatherName': fatherName }),
+                ...(grandfatherName && { 'receiver.grandfatherName': grandfatherName })
             };
         }
 
@@ -104,15 +104,23 @@ app.post('/searchFileMovements', async (req, res) => {
         if (fileMovements.length > 0) {
             res.status(200).json({
                 message: 'success',
-                data: fileMovements.map(fm => ({
-                    requesterName: fm.requester.name,
-                    receiverName: fm.receiver.name,
-                    organizationName: fm.organizationName,
-                    requesterFatherName: fm.requester.fatherName,
-                    requesterGrandfatherName: fm.requester.grandfatherName,
-                    receiverFatherName: fm.receiver.fatherName,
-                    receiverGrandfatherName: fm.receiver.grandfatherName
-                }))
+                data: fileMovements.map(fm => {
+                    if (isRequestor) {
+                        return {
+                            requesterName: fm.requester.name,
+                            requesterFatherName: fm.requester.fatherName,
+                            requesterGrandfatherName: fm.requester.grandfatherName,
+                            organizationName: fm.organizationName,
+                        };
+                    } else {
+                        return {
+                            receiverName: fm.receiver.name,
+                            receiverFatherName: fm.receiver.fatherName,
+                            receiverGrandfatherName: fm.receiver.grandfatherName,
+                            organizationName: fm.organizationName,
+                        };
+                    }
+                })
             });
         } else {
             res.status(404).json({ message: 'No records found' });

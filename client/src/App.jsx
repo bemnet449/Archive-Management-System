@@ -8,6 +8,7 @@ import HomePage from './folder/home';
 import ResultsPage from './folder/users';
 import Fileborrw from './filemovtrack/borrowingfile';
 import Fbn from './filemovtrack/borrowingdetails';
+import Fbs from './filemovtrack/fileSearch'
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/fdedit" element={<FDedit/>}/>
           <Route path="/fb" element={<Fileborrw/>}/>
           <Route path="/fbn" element={<Fbn/>}/>
+          <Route path='/fbs' element={<Fbs/>} />
         </Routes>
       </BrowserRouter>
     </>

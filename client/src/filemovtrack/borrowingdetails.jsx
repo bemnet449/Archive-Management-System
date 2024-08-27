@@ -8,9 +8,10 @@ const Fbn = () => {
     const { name, fatherName, grandfatherName } = location.state || {};
 
     const [userData, setUserData] = useState({
-        name: name  ||'',
-        fatherName: fatherName ||  '',
-        grandfatherName: grandfatherName  ||''
+        name: name || '',
+        fatherName: fatherName || '',
+        grandfatherName: grandfatherName || '',
+        isRequestor: true // Default to true to search for requester data
     });
 
     const [tableData, setTableData] = useState([]);
@@ -18,6 +19,7 @@ const Fbn = () => {
 
     useEffect(() => {
         setUserData({
+            ...userData,
             name: name || '',
             fatherName: fatherName || '',
             grandfatherName: grandfatherName || ''
@@ -105,29 +107,15 @@ const Fbn = () => {
         buttonHover: {
             backgroundColor: '#0069d9',
         },
-        headerContainer: {
-            height: '20px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '20px',
-            backgroundColor: 'rgb(23, 140, 235)',
-            padding: '15px 20px',
-            margin: '10px 0',
-        },
-        headerButton: {
-            backgroundColor: '#007bff',
-            color: 'white',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
+        toggleLabel: {
+            marginRight: '10px',
         },
         error: {
             color: 'red',
             marginTop: '10px',
         }
     };
+
     return (
         <>
             <Nav />
@@ -163,6 +151,29 @@ const Fbn = () => {
                                 />
                             </td>
                             <td style={styles.formTableTd}>
+                                <label style={styles.toggleLabel}>Search for:</label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="searchType"
+                                        value="requestor"
+                                        checked={userData.isRequestor}
+                                        onChange={() => setUserData({ ...userData, isRequestor: true })}
+                                    />
+                                    Requester
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="searchType"
+                                        value="receiver"
+                                        checked={!userData.isRequestor}
+                                        onChange={() => setUserData({ ...userData, isRequestor: false })}
+                                    />
+                                    Receiver
+                                </label>
+                            </td>
+                            <td style={styles.formTableTd}>
                                 <button 
                                     style={styles.button}
                                     onClick={handleSearch}
@@ -176,9 +187,6 @@ const Fbn = () => {
                     </tbody>
                 </table>
                 {error && <div style={styles.error}>{error}</div>}
-                <div style={styles.headerContainer}>
-                    <h2>Search Results</h2>
-                </div>
                 <div className="list">
                     <table style={styles.table}>
                         <thead>
@@ -193,9 +201,9 @@ const Fbn = () => {
                             {tableData.length > 0 ? (
                                 tableData.map((data, index) => (
                                     <tr key={index}>
-                                        <td style={styles.tableTd}>{data.requesterName}</td>
-                                        <td style={styles.tableTd}>{data.fatherName}</td>
-                                        <td style={styles.tableTd}>{data.grandfatherName}</td>
+                                        <td style={styles.tableTd}>{data.requesterName || data.receiverName}</td>
+                                        <td style={styles.tableTd}>{data.requesterFatherName || data.receiverFatherName}</td>
+                                        <td style={styles.tableTd}>{data.requesterGrandfatherName || data.receiverGrandfatherName}</td>
                                         <td style={styles.tableTd}>{data.organizationName}</td>
                                     </tr>
                                 ))
@@ -206,7 +214,7 @@ const Fbn = () => {
                             )}
                         </tbody>
                     </table>
-                    </div>
+                </div>
             </div>
         </>
     );

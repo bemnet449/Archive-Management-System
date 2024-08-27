@@ -46,7 +46,7 @@ const Fileborrw = () => {
     
             if (result.data.message === "success") {
                 // Pass the data to the 'fbs' route with status
-                navigate('fbs', { state: { data: result.data } });
+                navigate('/fbs', { state: { data: result.data } });
             } else {
                 console.error("No records found");
             }
