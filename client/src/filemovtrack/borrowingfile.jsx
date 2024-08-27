@@ -23,28 +23,35 @@ const Fileborrw = () => {
 
     const handleSearch = () => {
         const nameParts = requestorName.trim().split(' ');
-        const name = nameParts[0] || '';
-        const fatherName = nameParts[1]  ||'';
-        const grandfatherName = nameParts[2]  || '';
-
-        navigate('/fbn', { state: { name, fatherName, grandfatherName } });
+    const name = nameParts[0]  || '';
+    const fatherName = nameParts[1] || '';
+    const grandfatherName = nameParts[2] || '';
+    
+    navigate('/fbn', { state: { name, fatherName, grandfatherName, isRequestor: true } });
     };
-
+    
     const handleSearch2 = () => {
         const nameParts = receiverName.trim().split(' ');
-        const name = nameParts[0] || '';
-        const fatherName = nameParts[1] || '';
-        const grandfatherName = nameParts[2] || '';
-
-        navigate('/fbn', { state: { name, fatherName, grandfatherName } });
+    const name = nameParts[0] || '';
+    const fatherName = nameParts[1] || '';
+    const grandfatherName = nameParts[2] || '';
+    
+    navigate('/fbn', { state: { name, fatherName, grandfatherName, isRequestor: false } });
     };
-
+    
     const handleSearch3 = async () => {
         try {
-            const result = await axios.post('http://localhost/search-file', { fileNumber });
-            console.log(result.data);
+            // Ensure 'fileNumber' is defined in your component's state or context
+            const result = await axios.post('http://localhost:3000/search-file', { fileNumber });
+    
+            if (result.data.message === "success") {
+                // Pass the data to the 'fbs' route with status
+                navigate('fbs', { state: { data: result.data } });
+            } else {
+                console.error("No records found");
+            }
         } catch (error) {
-            console.error("There was an error searching for the file", error);
+            console.error("There was an error searching for the file:", error);
         }
     };
 
@@ -57,7 +64,7 @@ const Fileborrw = () => {
         const receiverNameParts = receiverName.trim().split(' ');
         const receiverFirstName = receiverNameParts[0] || '';
         const receiverFatherName = receiverNameParts[1] || '';
-        const receiverGrandfatherName = receiverNameParts[2] ||  '';
+        const receiverGrandfatherName = receiverNameParts[2] || '';
     
         const filedetails = {
             fileNumber,
@@ -79,7 +86,7 @@ const Fileborrw = () => {
         try {
             const result = await axios.post('http://localhost:3000/Arv', filedetails);
             if (result.data.message === "success") {
-                navigate('/folder');
+                navigate('/fd');
             }
         } catch (error) {
             console.error("There was an error saving the file details", error);
@@ -116,7 +123,8 @@ const Fileborrw = () => {
                                         value={organizationName} 
                                         onChange={(e) => setOrganizationName(e.target.value)} 
                                     />
-                                </td>         
+                                </td>
+                                
                             </tr>
                             <tr>
                             <td>

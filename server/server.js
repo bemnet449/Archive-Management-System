@@ -78,3 +78,76 @@ app.post('/Arv', async (req, res) => {
         res.status(500).json({ message: 'Error saving file details', error });
     }
 });
+
+app.post('/searchFileMovements', async (req, res) => {
+    try {
+        const { name, fatherName, grandfatherName, isRequestor } = req.body;
+
+        let query = {};
+        
+        if (isRequestor) {
+            query = {
+                'requester.name': name,
+                'requester.fatherName': { $exists: true, $eq: fatherName },
+                'requester.grandfatherName': { $exists: true, $eq: grandfatherName }
+            };
+        } else {
+            query = {
+                'receiver.name': name,
+                'receiver.fatherName': { $exists: true, $eq: fatherName },
+                'receiver.grandfatherName': { $exists: true, $eq: grandfatherName }
+            };
+        }
+
+        const fileMovements = await FileMovement.find(query);
+
+        if (fileMovements.length > 0) {
+            res.status(200).json({
+                message: 'success',
+                data: fileMovements.map(fm => ({
+                    requesterName: fm.requester.name,
+                    receiverName: fm.receiver.name,
+                    organizationName: fm.organizationName,
+                    requesterFatherName: fm.requester.fatherName,
+                    requesterGrandfatherName: fm.requester.grandfatherName,
+                    receiverFatherName: fm.receiver.fatherName,
+                    receiverGrandfatherName: fm.receiver.grandfatherName
+                }))
+            });
+        } else {
+            res.status(404).json({ message: 'No records found' });
+        }
+    } catch (error) {
+        console.error('Error searching for file movements:', error);
+        res.status(500).json({ message: 'Error searching for file movements', error });
+    }
+});
+
+app.post('/search-file', async (req, res) => {
+    try {
+        const { fileNumber } = req.body;
+        const fileMovements = await FileMovement.find({ fileNumber });
+
+        if (fileMovements.length > 0) {
+            res.status(200).json({
+                message: 'success',
+                data: fileMovements.map(fm => ({
+                    fileNumber: fm.fileNumber,
+                    senderName: fm.sender && fm.sender.name ? fm.sender.name : 'Unknown',
+                    receiverName: fm.receiver && fm.receiver.name ? fm.receiver.name : 'Unknown',
+                    borrowingDate: fm.borrowingDate,
+                    returnDate: fm.returnDate,
+                    remarks: fm.remarks,
+                    organizationName: fm.organizationName,
+                    volumeNumber: fm.volumeNumber,
+                }))
+            });
+        } else {
+            res.status(404).json({ message: 'No records found' });
+        }
+        
+    } catch (error) {
+        console.error('Error searching for file movements:', error);
+        res.status(500).json({ message: 'Error searching for file movements', error });
+    }
+});
