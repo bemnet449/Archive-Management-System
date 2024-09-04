@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const fileMovementSchema = new mongoose.Schema({
     fileNumber: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     organizationName: {
         type: String,
@@ -14,7 +13,7 @@ const fileMovementSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    requester: {
+    requestor: {
         name: {
             type: String,
             required: true
@@ -50,15 +49,19 @@ const fileMovementSchema = new mongoose.Schema({
         required: true
     },
     pagesWhenReturned: {
-        type: Number
+        type: Number,
+        default: 0,
     },
     remarks: {
         type: String
-    }
+    },
+    approvalReason: { 
+        type: String, default: null
+    } 
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt fields
 });
 
-const FileMovement = mongoose.model('FileMovement', fileMovementSchema);
+const FileMovements = mongoose.model('FileMovements', fileMovementSchema);
 
-module.exports = FileMovement;
+module.exports = FileMovements;

@@ -25,7 +25,7 @@ const Folder = () => {
             const response = await axios.post('http://localhost:3000/search', { folderNumber });
             
             if (response.data.status === "success") {
-                navigate('/u', { state: { users: response.data.users } });
+                navigate('/fileNoSearchResults', { state: { users: response.data.users } });
             } else {
                 console.error("Search failed:", response.data.message);
                 // Handle unsuccessful search
@@ -43,7 +43,7 @@ const Folder = () => {
     
             if (response.data.status === "success") {
                 const { userId } = response.data;
-                navigate('/home', { state: { userId } });
+                navigate('/fullNameSearchResults', { state: { userId } });
             } else {
                 console.error("Search failed:", response.data.message);
                 // Handle unsuccessful search
@@ -78,7 +78,7 @@ const Folder = () => {
       
           if (result.data.status === "success") {
             const userId = result.data.userId;
-            navigate(`/fd/${userId}`);
+            navigate(`/folderDetails/${userId}`);
           } else {
             setError(result.data.message);
           }

@@ -59,7 +59,7 @@ const FDedit = () => {
     
             setSuccessMessage('Folder details updated successfully.');
             setError('');
-            navigate('/home', { state: { userId } }); // Pass userId to navigate
+            navigate('/fullNameSearchResults', { state: { userId } }); // Pass userId to navigate
         } catch (err) {
             setError('Failed to save folder details.');
             setSuccessMessage('');

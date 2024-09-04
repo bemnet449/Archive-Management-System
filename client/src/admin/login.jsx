@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './admin.css';
-import Nav from "../nav and fot/navbar";
+import Navl from '../nav and fot/navlog';
 
 const LoginSignUp = () => {
   const [isSignUpActive, setIsSignUpActive] = useState(false);
@@ -45,7 +45,7 @@ const LoginSignUp = () => {
 
       if (response.data.status === 'success') {
         console.log('Login successful:', response.data);
-        navigate('/folder'); // Redirect to folder page after successful login
+        navigate('/home'); // Redirect to folder page after successful login
       } else {
         alert('Login failed. Please try again.');
       }
@@ -57,7 +57,7 @@ const LoginSignUp = () => {
 
   return (
     <>
-      <Nav />
+      <Navl />
       <div className="login-signup">
         <div className={`container ${isSignUpActive ? 'active' : ''}`} id="container">
           <div className="form-container sign-up">

@@ -14,6 +14,7 @@ const HomePage = () => {
 
     const navigate = useNavigate();
 
+
     React.useEffect(() => {
         const fetchUserNameAndFolders = async () => {
             try {
@@ -65,11 +66,11 @@ const HomePage = () => {
 
     const handleEdit = (index) => {
         const folderId = folders[index]._id;
-        navigate('/fdedit', { state: { folderId, userId } });
+        navigate('/folderEdit', { state: { folderId, userId } });
     };
 
     const addNew = () => {
-        navigate(`/fd/${userId}`);
+        navigate(`/folderDetails/${userId}`);
     };
 
     if (loading) return <p>Loading...</p>;

@@ -1,58 +1,70 @@
-/* Reset margins for body and html to ensure nav stays at the top */
-body, html {
-    margin: 0;
-    padding: 0;
+/* nav.css */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
 }
 
-/* Adjusting the body to add space for the fixed nav */
 body {
-    margin-top: 60px; /* Height of the .nav + some extra space if needed */
+  margin-top: 80px; /* Height of the .nav + extra space */
+  background-color: #f5f5f5; /* Neutral background color for readability */
 }
 
-/* Navbar styles */
+/* Fixed position for the navigation bar */
 .nav {
-    height: 100px;
-    background-color: #1787fe;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ccc; /* Optional: adds a border around the nav */
-    position: fixed; /* Stays fixed at the top of the page */
-    top: 0; /* Aligns the nav at the very top */
-    left: 0; /* Aligns the nav at the very left */
-    right: 0; /* Ensures the nav spans the full width */
-    z-index: 1000; /* Ensures the nav is on top of other content */
+  height: 100px;
+  background-color: #f0f8ff; /* Very light blue color */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Small padding on both sides */
+  border-bottom: 2px solid #e0e0e0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
 /* Ensure the logo scales correctly */
 .logo {
-    height: 80px; /* Adjust as needed */
-    width: 300px;  /* Maintains aspect ratio */
+  height: 60px; /* Adjusted size */
+  margin-right: 10px;
 }
 
-/* Styles for the text next to the logo */
+/* Styles for the central text */
 .nav-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 10px; /* Space between image and text */
+  flex-grow: 1; /* Makes it take available space */
+  display: flex;
+  justify-content: center; /* Centers the text horizontally */
 }
 
-/* Remove default margins from headings and paragraphs */
-h2 {
-    margin-top: 40px; /* Remove default margins */
-    text-transform: uppercase;
+.nav-text h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #333; /* Slightly darker text for contrast */
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Sign-up link styles */
-.sign-up {
-    text-decoration: none;
-    color: #000000; /* Color for the link */
-    font-weight: bold;
+/* Styles for nav links */
+.nav-links {
+  display: flex;
+  gap: 15px;
 }
 
-/* Sign-up link hover effect */
-.sign-up:hover {
-    text-decoration: underline;
+.nav-link {
+  text-decoration: none;
+  color: #333; /* Slightly darker text for readability */
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #d8eafd; /* Light blue hover effect */
 }

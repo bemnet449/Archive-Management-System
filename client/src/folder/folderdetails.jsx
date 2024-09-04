@@ -59,7 +59,7 @@ const Fdetails = () => {
 
       if (result.data.status === 'success') {
         setSuccessMessage('Folder details saved successfully');
-        setTimeout(() => navigate('/home', { state: { folderData, userId } }), 1000);
+        setTimeout(() => navigate('/fullNameSearchResults', { state: { folderData, userId } }), 1000);
       } else {
         setError(result.data.message || 'Failed to save folder details.');
       }
@@ -76,7 +76,6 @@ const Fdetails = () => {
         <h1>{name}</h1>
         <form>
           <div className="fdetails-header">
-            <button type="button">NEW</button>
             <button type="button" onClick={handleSave}>SAVE</button>
           </div>
           <div className="fdetails-form">
