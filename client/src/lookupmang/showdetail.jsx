@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from "../nav and fot/navbar";
 
 const ShowCD = () => {
-    const location = useLocation();
-    const { files = [] } = location.state || {};
+    const [fileList, setFileList] = useState([]);
 
-    const [fileList, setFileList] = useState(files);
+    useEffect(() => {
+        const fetchFiles = async () => {
+            try {
+                const result = await axios.get('http://localhost:3000/Cget'); // Replace with your actual endpoint
+                setFileList(result.data.files || []); // Adjust according to your backend response structure
+            } catch (error) {
+                console.error("Error fetching files:", error);
+            }
+        };
+        fetchFiles();
+    }, []);
 
     const handleDelete = async (fileId) => {
         try {

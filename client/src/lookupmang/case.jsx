@@ -44,11 +44,11 @@ const Case = () => {
                 alert("Saved successfully");
                 navigate('/caseshow', { state: { data: caseData } });
             } else {
-                // Handle error case
+                alert("Failed to save: " + result.data.message);
             }
         } catch (error) {
             console.error("Error saving case:", error);
-            // Handle error case
+            alert("Error saving case. Check console for details.");
         }
     };
 

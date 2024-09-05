@@ -1,5 +1,5 @@
 const express = require('express');
-const Case = require("../models/lookup/case")
+const CaseModel = require("../models/lookup/case")
 const Decision = require("../models/lookup/decision")
 const Room = require('../models/lookup/roomnum');
 const Shelf = require('../models/lookup/shelfnum');
@@ -10,12 +10,17 @@ router.post('/Csave', async (req, res) => {
     const { data } = req.body;
 
     try {
+        // Validate the data (optional but recommended)
+        if (!data.amharic || !data.english || !data.tigrigna || !data.oromic || !data.somali || !data.afar) {
+            return res.status(400).json({ message: 'Invalid data' });
+        }
+
         // Save the new case
-        const newCase = new Case(data);
+        const newCase = new CaseModel(data); // Use CaseModel to save
         await newCase.save();
 
         // Retrieve all saved cases
-        const allCases = await Case.find();
+        const allCases = await CaseModel.find(); // Use CaseModel to find all
 
         // Return success message along with all cases
         res.status(200).json({ message: 'success', cases: allCases });
@@ -29,8 +34,13 @@ router.delete('/Cdelete/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
+        // Validate the ID format if necessary (optional)
+        if (!mongoose.isValidObjectId(id)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
+
         // Find and delete the case by ID
-        const result = await Case.findByIdAndDelete(id);
+        const result = await CaseModel.findByIdAndDelete(id); // Use CaseModel
 
         if (result) {
             res.status(200).json({ message: 'success' });
@@ -42,6 +52,7 @@ router.delete('/Cdelete/:id', async (req, res) => {
         res.status(500).json({ message: 'error', error });
     }
 });
+
 
 ////////////////////////////////////////////////////////////
 ///Decision
