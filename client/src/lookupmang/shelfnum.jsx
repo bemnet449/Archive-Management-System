@@ -8,7 +8,7 @@ const ShelfNum = () => {
     const [roomData, setRoomData] = useState({
         worktype: '',
         roomnum: '',
-        shelfnum: '',  // Add shelfnum field
+        shelfnum: '',
         remark: ''
     });
 
@@ -35,7 +35,7 @@ const ShelfNum = () => {
         setRoomData({
             worktype: '',
             roomnum: '',
-            shelfnum: '',  // Reset shelfnum field
+            shelfnum: '',
             remark: ''
         });
     };
@@ -44,27 +44,102 @@ const ShelfNum = () => {
         <>
             <Nav />
             <Dropd />
-            <div className="">
-                <div className="header">
-                    <button onClick={handleRefresh}>NEW</button>
-                    <button onClick={handleSave}>Save</button>
+            <div style={{
+                width: '80%',
+                margin: '0 auto',
+                padding: '20px',
+                backgroundColor: 'white',
+                borderRadius: '10px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+            }}>
+                <div className="header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                    <button 
+                        onClick={handleRefresh} 
+                        style={{
+                            backgroundColor: '#1787fe',
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        NEW
+                    </button>
+                    <button 
+                        onClick={handleSave} 
+                        style={{
+                            backgroundColor: '#1787fe',
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Save
+                    </button>
                 </div>
-                <div className="p">
-                    <span>
-                        <label>Type of Working</label>
-                        <input type="text" name="worktype" value={roomData.worktype} onChange={handleChange} />
+                <div className="p" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    <span style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>Type of Working</label>
+                        <input 
+                            type="text" 
+                            name="worktype" 
+                            value={roomData.worktype} 
+                            onChange={handleChange} 
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc'
+                            }} 
+                        />
                     </span>
-                    <span>
-                        <label>Room Number</label>
-                        <input type="number" name="roomnum" value={roomData.roomnum} onChange={handleChange} />
+                    <span style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>Room Number</label>
+                        <input 
+                            type="number" 
+                            name="roomnum" 
+                            value={roomData.roomnum} 
+                            onChange={handleChange} 
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc'
+                            }} 
+                        />
                     </span>
-                    <span>
-                        <label>Shelf Number</label>  {/* Add Shelf Number input */}
-                        <input type="number" name="shelfnum" value={roomData.shelfnum} onChange={handleChange} />
+                    <span style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>Shelf Number</label>
+                        <input 
+                            type="number" 
+                            name="shelfnum" 
+                            value={roomData.shelfnum} 
+                            onChange={handleChange} 
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc'
+                            }} 
+                        />
                     </span>
-                    <span>
-                        <label>Remark</label>
-                        <input type="text" name="remark" value={roomData.remark} onChange={handleChange} />
+                    <span style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>Remark</label>
+                        <input 
+                            type="text" 
+                            name="remark" 
+                            value={roomData.remark} 
+                            onChange={handleChange} 
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc'
+                            }} 
+                        />
                     </span>
                 </div>
             </div>

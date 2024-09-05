@@ -25,7 +25,7 @@ const Case = () => {
         }));
     };
 
-    const handelRefresh = () => {
+    const handleRefresh = () => {
         setCaseData({
             amharic: '',
             english: '',
@@ -37,11 +37,11 @@ const Case = () => {
         });
     };
 
-    const handelSave = async () => {
+    const handleSave = async () => {
         try {
             const result = await axios.post("http://localhost:3000/Csave", { data: caseData });
             if (result.data.message === "success") {
-                alert("saved succusfully")
+                alert("Saved successfully");
                 navigate('/caseshow', { state: { data: caseData } });
             } else {
                 // Handle error case
@@ -54,36 +54,67 @@ const Case = () => {
 
     return (
         <>
-        <Nav/>
-        <Dropd/>
-            <div style={{ width: '80%' }}>
-                <div className="header">
-                    <button onClick={handelRefresh}>New</button>
-                    <button onClick={handelSave}>Save</button>
+            <Nav />
+            <Dropd />
+            <div style={{ 
+                width: '80%', 
+                margin: '0 auto', 
+                padding: '20px', 
+                backgroundColor: 'white', // Main div background
+                borderRadius: '10px', 
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' 
+            }}>
+                <div className="header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                    <button 
+                        onClick={handleRefresh} 
+                        style={{ 
+                            backgroundColor: '#1787fe', // Button background color
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer' 
+                        }}
+                    >
+                        New
+                    </button>
+                    <button 
+                        onClick={handleSave} 
+                        style={{ 
+                            backgroundColor: '#1787fe', // Button background color
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer' 
+                        }}
+                    >
+                        Save
+                    </button>
                 </div>
-                <div className="main">
+                <div className="main" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                     {['amharic', 'english', 'tigrigna', 'oromic', 'somali', 'afar'].map((language, index) => (
-                        <span key={index}>
-                            <label>{`CASE(${language.toUpperCase()})`}</label>
+                        <div key={index} style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                            <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>{`CASE (${language.toUpperCase()})`}</label>
                             <input
                                 type="text"
                                 name={language}
                                 value={caseData[language]}
                                 onChange={handleInputChange}
-                                style={{ width: '80%' }}
+                                style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
                             />
-                        </span>
+                        </div>
                     ))}
-                    <span>
-                        <label>REMARK</label>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>REMARK</label>
                         <input
                             type="text"
                             name="remark"
                             value={caseData.remark}
                             onChange={handleInputChange}
-                            style={{ width: '80%' }}
+                            style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
                         />
-                    </span>
+                    </div>
                 </div>
             </div>
         </>

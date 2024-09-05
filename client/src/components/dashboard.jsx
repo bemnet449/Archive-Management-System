@@ -46,17 +46,10 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard-item">
                     <div className="item-content">
-                        <h3>File Transfer</h3>
-                        <p>Transfer files between locations or organizations.</p>
+                        <h3>Look Up Management</h3>
+                        <p>Manage lookup records, such as cases, decisions, and locations.</p>
                     </div>
-                    <Link to="/file-transfer" className="dashboard-button">Transfer Files</Link>
-                </div>
-                <div className="dashboard-item">
-                    <div className="item-content">
-                        <h3>Report Management</h3>
-                        <p>Generate and print various reports.</p>
-                    </div>
-                    <Link to="/reports" className="dashboard-button">Generate Reports</Link>
+                    <Link to="/lookup-management" className="dashboard-button">Manage Lookups</Link>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ const FileSearch = () => {
     const handleDelete = async (index) => {
         try {
             const Id = data[index]._id;  
-            console.log('Fetching file movement with ID:', Id);
+            
 
             // Make a DELETE request to the backend with the file's unique ID
             const response = await axios.delete(`http://localhost:3000/file-movements/delete/${Id}`);

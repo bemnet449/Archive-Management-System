@@ -14,6 +14,7 @@ import FileReturn from './filemovtrack/fileReturn';
 import Lsearch from './letters/lettersearch';
 import Lnsearch from './letters/lnamesearch';
 import LetterForm from './letters/letterform';
+import Lettersend from './letters/sendletter'
 import Scandoc from './scan doc/scandocform';
 import Scandet from './scan doc/scandetail';
 import SdS from './scan doc/scandetshow';
@@ -47,10 +48,11 @@ function App() {
           <Route path='/correspondence' element={<LetterForm/>} />
           <Route path='/letter-search' element={<Lsearch/>} />
           <Route path='/lettern-search' element={<Lnsearch/>} />
+          <Route path='/send-letter' element={<Lettersend/>} />
           <Route path='/scanned-documents' element={<Scandoc/>} />
           <Route path='/scansearch' element={<Scandet/>} />
           <Route path='/sds' element={<SdS/>} />
-          <Route path='/case' element={<Case/>} />
+          <Route path='/lookup-management' element={<Case/>} />
           <Route path='/caseshow' element={<ShowCD/>} />
           <Route path='/decision' element={<Decision/>} />
           <Route path='/decisionshow' element={<ShowD/>} />

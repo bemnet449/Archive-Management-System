@@ -23,6 +23,11 @@ const DecisionDetails = new mongoose.Schema({
 });
 
 const correspondenceSchema = new mongoose.Schema({
+  id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    auto: true
+  },
   fileNumber: {
     type: Number,
     required: true,

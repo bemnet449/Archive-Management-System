@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nav from "../nav and fot/navbar";
@@ -25,25 +25,59 @@ const RoomDetails = () => {
     return (
         <>
             <Nav />
-            <div className="room-details">
-                <table>
+            <div style={{
+                width: '80%', 
+                margin: '0 auto', 
+                padding: '20px', 
+                backgroundColor: 'white', // Main div background
+                borderRadius: '10px', 
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' 
+            }}>
+                <div className="header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                    <button
+                        onClick={() => navigate('/add-room')} // Assuming this navigates to an add room page
+                        style={{
+                            backgroundColor: '#1787fe', // Button background color
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        New Room
+                    </button>
+                </div>
+                <table style={{
+                    width: '100%',
+                    borderCollapse: 'collapse',
+                    marginTop: '20px',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+                }}>
                     <thead>
-                        <tr>
-                            <th>Type of Working</th>
-                            <th>Room Number</th>
-                            <th>Remark</th>
-                            <th>Action</th>
+                        <tr style={{ backgroundColor: '#f4f4f4', textAlign: 'left' }}>
+                            <th style={thStyle}>Type of Working</th>
+                            <th style={thStyle}>Room Number</th>
+                            <th style={thStyle}>Remark</th>
+                            <th style={thStyle}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {roomList.map(room => (
-                            <tr key={room._id}>
-                                <td>{room.worktype}</td>
-                                <td>{room.roomnum}</td>
-                                <td>{room.remark}</td>
-                                <td>
+                            <tr key={room._id} style={trStyle}>
+                                <td style={tdStyle}>{room.worktype}</td>
+                                <td style={tdStyle}>{room.roomnum}</td>
+                                <td style={tdStyle}>{room.remark}</td>
+                                <td style={tdStyle}>
                                     <button
-                                        style={{ color: 'red', cursor: 'pointer' }}
+                                        style={{
+                                            backgroundColor: 'red',
+                                            color: 'white',
+                                            padding: '5px 10px',
+                                            border: 'none',
+                                            borderRadius: '5px',
+                                            cursor: 'pointer'
+                                        }}
                                         onClick={() => handleDelete(room._id)}
                                     >
                                         Delete
@@ -56,6 +90,26 @@ const RoomDetails = () => {
             </div>
         </>
     );
+};
+
+const thStyle = {
+    padding: '10px',
+    border: '1px solid #ddd',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#f4f4f4'
+};
+
+const tdStyle = {
+    padding: '10px',
+    border: '1px solid #ddd',
+    textAlign: 'center'
+};
+
+const trStyle = {
+    backgroundColor: '#fff',
+    transition: 'background-color 0.2s ease',
+    cursor: 'pointer'
 };
 
 export default RoomDetails;

@@ -70,7 +70,7 @@ const LoginSignUp = () => {
                     <td>
                       <input
                         type="text"
-                        id="username"
+                        id="signup-username"
                         name="username"
                         placeholder="Username"
                         value={username}
@@ -84,7 +84,7 @@ const LoginSignUp = () => {
                     <td>
                       <input
                         type="email"
-                        id="email"
+                        id="signup-email"
                         name="email"
                         placeholder="Email"
                         value={email}
@@ -98,7 +98,7 @@ const LoginSignUp = () => {
                     <td>
                       <input
                         type="password"
-                        id="password"
+                        id="signup-password"
                         name="password"
                         placeholder="Password"
                         value={password}
@@ -126,7 +126,7 @@ const LoginSignUp = () => {
                     <td>
                       <input
                         type="email"
-                        id="email"
+                        id="login-email"
                         name="email"
                         required
                         placeholder="Email"
@@ -140,7 +140,7 @@ const LoginSignUp = () => {
                     <td>
                       <input
                         type="password"
-                        id="password"
+                        id="login-password"
                         name="password"
                         required
                         placeholder="Password"

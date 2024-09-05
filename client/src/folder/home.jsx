@@ -11,6 +11,7 @@ const HomePage = () => {
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState('');
     const [refresh, setRefresh] = React.useState(false);
+    console.log("File data:", folders);
 
     const navigate = useNavigate();
 
