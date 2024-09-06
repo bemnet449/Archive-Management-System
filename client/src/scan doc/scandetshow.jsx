@@ -28,10 +28,10 @@ const SdS = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td style={{ border: '1px solid black' }}>{scanfile.volumenum || 'N/A'}</td>
-                                <td style={{ border: '1px solid black' }}>{scanfile.doctype || 'N/A'}</td>
+                                <td style={{ border: '1px solid black' }}>{scanfile.volumenumber || 'N/A'}</td>
+                                <td style={{ border: '1px solid black' }}>{scanfile.documenttype || 'N/A'}</td>
                                 <td style={{ border: '1px solid black' }}>{scanfile.content || 'N/A'}</td>
-                                <td style={{ border: '1px solid black' }}>{scanfile.keyword || 'N/A'}</td>
+                                <td style={{ border: '1px solid black' }}>{scanfile.keywords || 'N/A'}</td>
                                 <td style={{ border: '1px solid black' }}>{scanfile.addinfo || 'N/A'}</td>
                             </tr>
                         </tbody>

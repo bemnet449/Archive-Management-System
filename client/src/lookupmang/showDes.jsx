@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nav from "../nav and fot/navbar";
 
@@ -19,6 +19,25 @@ const ShowD = () => {
         } catch (error) {
             console.error("Error deleting file:", error);
         }
+    };
+    const thStyle = {
+        padding: '10px',
+        border: '1px solid #ddd',
+        fontWeight: 'bold',
+        textAlign: 'center'
+    };
+    
+    const tdStyle = {
+        padding: '10px',
+        border: '1px solid #ddd',
+        textAlign: 'center'
+    };
+    
+    const trStyle = {
+        backgroundColor: '#fff',
+        transition: 'background-color 0.2s ease',
+        cursor: 'pointer',
+        textAlign: 'center'
     };
 
     return (
@@ -74,26 +93,6 @@ const ShowD = () => {
             </div>
         </>
     );
-};
-
-const thStyle = {
-    padding: '10px',
-    border: '1px solid #ddd',
-    fontWeight: 'bold',
-    textAlign: 'center'
-};
-
-const tdStyle = {
-    padding: '10px',
-    border: '1px solid #ddd',
-    textAlign: 'center'
-};
-
-const trStyle = {
-    backgroundColor: '#fff',
-    transition: 'background-color 0.2s ease',
-    cursor: 'pointer',
-    textAlign: 'center'
 };
 
 export default ShowD;

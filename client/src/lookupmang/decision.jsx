@@ -17,6 +17,8 @@ const Decision = () => {
 
     const navigate = useNavigate();
 
+
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setDecisionData(prevState => ({
@@ -42,7 +44,7 @@ const Decision = () => {
             const result = await axios.post("http://localhost:3000/Dsave", { data: decisionData });
             if (result.data.message === "success") {
                 alert("Saved successfully");
-                navigate('/decisionshow', { state: { data: decisionData } });
+                navigate('/decisionshow', { state: { files: result.data.decisions } });
             } else {
                 // Handle error case
             }

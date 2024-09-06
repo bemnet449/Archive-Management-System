@@ -42,16 +42,17 @@ const Case = () => {
             const result = await axios.post("http://localhost:3000/Csave", { data: caseData });
             if (result.data.message === "success") {
                 alert("Saved successfully");
-                navigate('/caseshow', { state: { data: caseData } });
+                // Navigate and pass the case data correctly
+                navigate('/caseshow', { state: { files: result.data.cases } });
             } else {
-                alert("Failed to save: " + result.data.message);
+                alert("Error saving case");
             }
         } catch (error) {
             console.error("Error saving case:", error);
-            alert("Error saving case. Check console for details.");
+            alert("Error saving case");
         }
     };
-
+    
     return (
         <>
             <Nav />

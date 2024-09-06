@@ -7,7 +7,9 @@ const decisionSchema = new mongoose.Schema({
     oromic: { type: String },
     somali: { type: String },
     afar: { type: String },
-    remark: { type: String }
+    remark: {
+        type: String,
+    }
 });
 
 const DecisionModel = mongoose.model('decisions', decisionSchema);

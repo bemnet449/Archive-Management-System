@@ -35,7 +35,7 @@ const RoomDetails = () => {
             }}>
                 <div className="header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
                     <button
-                        onClick={() => navigate('/add-room')} // Assuming this navigates to an add room page
+                        onClick={() => navigate('/roomnumber')} // Assuming this navigates to an add room page
                         style={{
                             backgroundColor: '#1787fe', // Button background color
                             color: 'white',
